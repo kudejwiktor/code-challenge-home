@@ -1,0 +1,46 @@
+version: "3"
+services:
+  php:
+    build: ./Docker/php
+    container_name: location_php_service
+    networks:
+      - backend
+    volumes:
+      - ./location-service:/var/www/html/
+  apache:
+    build: ./Docker/apache
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - frontend
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./location-service:/var/www/html/
+
+  web:
+    image: nginx
+    volumes:
+      - ./web:/var/www/web/
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/web.conf
+    ports:
+      - "8889:3000"
+    environment:
+      - NGINX_HOST=locations.local
+      - NGINX_PORT=3000
+    command: /bin/bash -c "envsubst < /etc/nginx/conf.d/web.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
+
+  mysql:
+    image: mysql:5.6.40
+    restart: always
+    networks:
+      - backend
+    environment:
+      MYSQL_DATABASE: locations
+      MYSQL_ROOT_PASSWORD: password
+
+networks:
+  frontend:
+  backend:
