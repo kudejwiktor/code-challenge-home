@@ -1,5 +1,4 @@
-#Location challenge
-
+# Location challenge
 
 ## Prerequisites
 
