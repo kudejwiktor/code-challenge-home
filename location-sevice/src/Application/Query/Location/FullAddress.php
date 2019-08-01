@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Home\LocationService\Application\Query\Location;
 
 
@@ -11,7 +10,7 @@ namespace Home\LocationService\Application\Query\Location;
 class FullAddress
 {
     /**
-     * @var string
+     * @var string|null
      */
     private $street;
     /**
@@ -34,7 +33,7 @@ class FullAddress
      * @param string $postalCode
      * @param string $city
      */
-    public function __construct(string $street, int $suiteNumber, string $postalCode, string $city)
+    public function __construct(?string $street, ?string $suiteNumber, string $postalCode, string $city)
     {
         $this->street = $street;
         $this->suiteNumber = $suiteNumber;
@@ -42,8 +41,15 @@ class FullAddress
         $this->city = $city;
     }
 
+    /**
+     * @return string
+     */
     public function __toString(): string
     {
-        return "$this->street $this->suiteNumber, $this->postalCode $this->city";
+        $street = "";
+        if (!empty($this->street)) {
+            $street = "$this->street $this->suiteNumber,";
+        }
+        return "$street $this->postalCode $this->city";
     }
 }

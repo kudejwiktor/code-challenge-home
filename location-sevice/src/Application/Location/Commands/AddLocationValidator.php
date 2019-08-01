@@ -12,7 +12,7 @@ class AddLocationValidator extends CommandValidation
         'street' => '',
         'postal_code' => 'required',
         'city' => 'required',
-        'suit_number' => 'required',
+        'suit_number' => '',
         'latitude' => 'required|numeric',
         'longitude' => 'required|numeric'
     ];

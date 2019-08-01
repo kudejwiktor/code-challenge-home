@@ -10,7 +10,7 @@ class Address
     private $street;
 
     /**
-     * @var string
+     * @var string|null
      */
     private $suiteNumber;
 
@@ -24,7 +24,7 @@ class Address
      */
     private $city;
 
-    public function __construct(?string $street, string $suiteNumber, string $postalCode, string $city)
+    public function __construct(?string $street, ?string $suiteNumber, string $postalCode, string $city)
     {
         $this->street = $street;
         $this->suiteNumber = $suiteNumber;
@@ -33,17 +33,17 @@ class Address
     }
 
     /**
-     * @return int
+     * @return string|null
      */
-    public function getSuiteNumber(): string
+    public function getSuiteNumber(): ?string
     {
         return $this->suiteNumber;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getStreet(): string
+    public function getStreet(): ?string
     {
         return $this->street;
     }

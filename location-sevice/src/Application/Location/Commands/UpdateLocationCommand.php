@@ -58,7 +58,7 @@ class UpdateLocationCommand implements Command
         ?string $id,
         ?string $name,
         ?string $street,
-        ?int $suit_number,
+        ?string $suit_number,
         ?string $postal_code,
         ?string $city,
         ?float $latitude,

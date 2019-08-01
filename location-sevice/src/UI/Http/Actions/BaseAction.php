@@ -19,7 +19,7 @@ class BaseAction
             'Access-Control-Allow-Methods' => 'GET, PUT, POST, DELETE, OPTIONS',
             'Access-Control-Allow-Headers' => 'X-Requested-With, Content-Type, Accept, Origin, Authorization',
             'Cache-Control' => 'public, s-maxage=120',
-            'Content-Type' =>  'application/json',
+            'Content-Type' => 'application/json',
         ];
     }
 }

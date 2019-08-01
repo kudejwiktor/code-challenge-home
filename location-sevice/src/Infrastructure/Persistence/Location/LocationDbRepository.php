@@ -7,6 +7,10 @@ use Home\LocationService\Domain\Location\{Location, LocationFactory, LocationRep
 use Home\LocationService\SharedKernel\LocationId\LocationId;
 use ParagonIE\EasyDB\EasyDB;
 
+/**
+ * Class LocationDbRepository
+ * @package Home\LocationService\Infrastructure\Persistence\Location
+ */
 class LocationDbRepository implements LocationRepository
 {
     /**
@@ -19,28 +23,30 @@ class LocationDbRepository implements LocationRepository
      */
     private $db;
 
+    /**
+     * LocationDbRepository constructor.
+     * @param EasyDB $db
+     */
     public function __construct(EasyDB $db)
     {
         $this->db = $db;
     }
 
-    public function all()
-    {
-        return $rows = $this->db->run('SELECT * FROM location');
-    }
-
+    /**
+     * @param LocationId $id
+     * @return bool
+     */
     public function exist(LocationId $id): bool
     {
         $exist = $this->db->row('SELECT count(*) as cnt FROM ' . self::table . ' WHERE id = ?', $id->getId())['cnt'];
         return (boolean)$exist;
     }
 
-
     /**
      * @param LocationId $locationId
      * @throws LocationNotFoundException
      */
-    public function delete(LocationId $locationId)
+    public function delete(LocationId $locationId): void
     {
         if (!$this->exist($locationId)) {
             throw LocationNotFoundException::forId($locationId);

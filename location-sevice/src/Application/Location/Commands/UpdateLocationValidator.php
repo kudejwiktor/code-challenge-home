@@ -20,7 +20,7 @@ class UpdateLocationValidator extends CommandValidation
         'street' => 'required',
         'postal_code' => 'required',
         'city' => 'required',
-        'suit_number' => 'required|integer',
+        'suit_number' => '',
         'latitude' => 'required|numeric',
         'longitude' => 'required|numeric'
     ];

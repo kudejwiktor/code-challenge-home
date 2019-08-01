@@ -13,7 +13,7 @@ class AddressFactory
     {
         return new Address(
             $data['street'],
-            (int)$data['suite_number'],
+            $data['suit_number'],
             $data['postal_code'],
             $data['city']
         );

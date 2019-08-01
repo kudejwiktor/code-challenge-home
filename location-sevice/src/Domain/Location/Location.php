@@ -5,6 +5,10 @@ namespace Home\LocationService\Domain\Location;
 use Home\LocationService\SharedKernel\LocationId\LocationId;
 
 
+/**
+ * Class Location
+ * @package Home\LocationService\Domain\Location
+ */
 class Location
 {
     /**
@@ -28,6 +32,14 @@ class Location
      */
     private $latitude;
 
+    /**
+     * Location constructor.
+     * @param LocationId $id
+     * @param string $name
+     * @param Address $address
+     * @param float $longitude
+     * @param float $latitude
+     */
     public function __construct(LocationId $id, string $name, Address $address, float $longitude, float $latitude)
     {
         $this->id = $id;
@@ -77,7 +89,15 @@ class Location
         return $this->latitude;
     }
 
-    public static function add(string $name, Address $address, float $longitude, float $latitude)
+    /**
+     * @param string $name
+     * @param Address $address
+     * @param float $longitude
+     * @param float $latitude
+     * @return Location
+     * @throws \Exception
+     */
+    public static function add(string $name, Address $address, float $longitude, float $latitude): self
     {
         $id = LocationId::generate();
         return new self($id, $name, $address, $longitude, $latitude);

@@ -12,7 +12,7 @@ class CreateLocationTable extends AbstractMigration
             ->addColumn('name', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 100])
             ->addColumn('street', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 64, 'null' => true])
             ->addColumn('postal_code', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 6])
-            ->addColumn('suite_number', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 6])
+            ->addColumn('suite_number', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 6, 'null' => true])
             ->addColumn('city', MysqlAdapter::PHINX_TYPE_STRING, ['limit' => 64])
             ->addColumn('latitude', MysqlAdapter::PHINX_TYPE_FLOAT, [
                 'precision' => 10,
